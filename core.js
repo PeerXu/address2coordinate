@@ -271,7 +271,10 @@
         }
 
         conv._searchEngine.search(keyword);
-        conv._trackCenter.newTracker(keyword);
+        conv._trackCenter.newTracker(keyword, {
+          timeoutCallback: function(tracker) {
+            conv.convert(tracker.keyword);
+          }});
       }, 250);
       conv.dashboard.start();
     };
